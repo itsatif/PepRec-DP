@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int[] arr = new int[n+1];
+        int sol = CountStairPath(n,arr);
+        System.out.println(sol);
+    }
+    public static int CountStairPath(int n , int[] ans){
+        if(n==0){
+            return 1;
+        }
+        
+        if(n<0){
+            return 0;
+        }
+        if(ans[n] !=0){
+            return ans[n];
+        }
+        
+        int move1 = CountStairPath(n-1,ans);
+        int move2 = CountStairPath(n-2,ans);
+        int move3 = CountStairPath(n-3,ans);
+        
+        int totalSteps = move1+move2+move3;
+        
+        ans[n] = totalSteps;
+        return totalSteps;
+        
+    }
+
+}
